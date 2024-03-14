@@ -1,0 +1,43 @@
+/* Navigation Bar */
+header nav {
+    flex-direction: column;
+    gap: 0rem;
+    img, #login_signout_button {
+        display: none;
+    }
+    #hide-nav {
+        display: block;
+    }
+    #hide-nav:hover + ul, ul:hover {
+        display: block;
+        flex-direction: column;
+        width: 10rem;
+        background-color: inherit;
+    }
+    ul {
+        display: none;
+    }
+}
+
+/* ################################################################### */
+/* ############################# Index ############################### */
+.index-container {
+    grid-template-areas: 
+    'header'
+    'title'
+    'main'
+    'education'
+    'interests'
+    'links'
+    'skills'
+    'right-grid'
+    'footer';
+
+    #myself {
+        flex-direction: column;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
