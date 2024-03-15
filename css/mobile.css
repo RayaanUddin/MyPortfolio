@@ -1,11 +1,14 @@
 /* Navigation Bar */
 header nav {
-    flex-direction: column;
     gap: 0rem;
-    img, #login_signout_button {
+    grid-template-areas: 
+    'menu login';
+    display: grid;
+    img {
         display: none;
     }
     #hide-nav {
+        grid-area: menu;
         display: block;
     }
     #hide-nav:hover + ul, ul:hover {
@@ -16,28 +19,34 @@ header nav {
     }
     ul {
         display: none;
+        flex-direction: column;
     }
+    #login_signout_button {
+        grid-area: login;
+    }
+
 }
 
 /* ################################################################### */
 /* ############################# Index ############################### */
-.index-container {
-    grid-template-areas: 
-    'header'
-    'title'
-    'main'
-    'education'
-    'interests'
-    'links'
-    'skills'
-    'right-grid'
-    'footer';
-
-    #myself {
-        flex-direction: column;
+#myself {
+    flex-direction: column;
+    min-height: fit-content;
+    #aboutme {
+        width: 90%;
+        margin: auto auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        div {
+            background-image: url("/images/me.png");
+            background-size: cover;
+        }
+    }
+    figure {
+        width: fit-content;
+        height: fit-content;
         img {
-            width: 100%;
-            height: auto;
+            display: none;
         }
     }
 }
