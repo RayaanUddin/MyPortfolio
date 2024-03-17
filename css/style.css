@@ -260,11 +260,12 @@ a, li, ul {
     }
 }
 
-#experience {
+.row-list {
     margin: 1rem;
     ul {
         overflow-x: scroll;
         display: flex;
+        flex-direction: row-reverse;
         margin: 1rem auto 1rem auto;
         li {
             min-width: 30%;
@@ -274,8 +275,15 @@ a, li, ul {
                 font-size: 0.8rem;
                 margin-top: 0.5rem;
             }
+            a:hover {
+                text-decoration: underline;
+                color: rgb(252, 205, 148);
+            }
+            a:active {
+                color: inherit;
+            }
         }
-        li:nth-last-child(1) {
+        li:first-child {
             border-right: none;
         } 
     }

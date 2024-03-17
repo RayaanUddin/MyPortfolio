@@ -11,6 +11,7 @@ figure, figcaption, footer, header, nav {
 	vertical-align: baseline;
 	color: black;
 	text-decoration: none;
+	cursor: default;
 }
 ol, ul {
 	list-style: none;
