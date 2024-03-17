@@ -4,75 +4,86 @@
 /* Header */
 header {
     grid-area: header;
-    height: 2rem;
-    line-height: 2rem;
+    height: calc(fit-content + 2rem);
     position: relative;
+    h1 {
+        margin: 0;
+        padding: 0.5rem;
+        font-size: 2rem;
+        text-align: center;
+        background-color: #2827278d;
+        color: beige;
+    }
     /* Navigation Bar */
     nav {
-        height: inherit;
-        line-height: inherit;
-        position: fixed;
-        display: flex;
-        gap: 1rem;
-        font-size: 1.2rem;
-        background-color: #282727fa;
-        width: 100%;
-        font-family: "Ubuntu";
-        color: beige;
-
-        /* Navigation Bar Collapse items, when menu short */
-        #hide-nav {
-            color: inherit;
-            display: none;
-            background-color: inherit;
-            font-family: inherit;
-            text-align: left;
-            padding: 0 0.5rem;
-            width: fit-content;
-        }
-        #hide-nav:hover {
-            background-color: #646464aa;
-        }
-        #hide-nav:active {
-            background-color: #282727fa;
-        }
-
-        /* Navigation Bar items */
-        ul {
-            display: flex;
-        }
-        li, #login_signout_button{
+        height: 2rem;
+        line-height: 2rem;
+        #nav-overlay {
+            height: inherit;
             line-height: inherit;
-            a {
-                display: block;
+            position: fixed;
+            display: flex;
+            gap: 1rem;
+            font-size: 1.2rem;
+            background-color: #282727fa;
+            width: 100%;
+            font-family: "Ubuntu";
+            color: beige;
+
+            /* Navigation Bar Collapse items, when menu short */
+            #hide-nav {
+                color: inherit;
+                display: none;
+                background-color: inherit;
+                font-family: inherit;
+                text-align: left;
                 padding: 0 0.5rem;
+                width: fit-content;
+            }
+            #hide-nav:hover {
+                background-color: #646464aa;
+            }
+            #hide-nav:active {
+                background-color: #282727fa;
+            }
+
+            /* Navigation Bar items */
+            ul {
+                display: flex;
+            }
+            li, #login_signout_button{
                 line-height: inherit;
+                a {
+                    display: block;
+                    padding: 0 0.5rem;
+                    line-height: inherit;
+                }
             }
-        }
-        #login_signout_button {
-            margin-left: auto;
-            font-size: 1rem;
-            box-shadow: inset 0 0 0 0.1rem #282727;
-            background-color: rgb(235, 235, 235);
-            color: black;
-            font-family:sans-serif; 
-            :hover {
-                background-color: #bebebe;
+            #login_signout_button {
+                margin-left: auto;
+                font-size: 1rem;
                 box-shadow: inset 0 0 0 0.1rem #282727;
-            }
-            :active {
                 background-color: rgb(235, 235, 235);
+                color: black;
+                font-family:sans-serif; 
+                :hover {
+                    background-color: #bebebe;
+                    box-shadow: inset 0 0 0 0.1rem #282727;
+                }
+                :active {
+                    background-color: rgb(235, 235, 235);
+                }
             }
-        }
-        #selectedpage {
-            background-color: #a29f9feb;
-        }
-        li:hover, #login_signout_button:hover {
-            background-color: #a29f9faa;
-        }
-        i {
-            margin-right: 0.5rem;
-            color:white;
+            #selectedpage {
+                background-color: #a29f9feb;
+            }
+            li:hover, #login_signout_button:hover {
+                background-color: #a29f9faa;
+            }
+            i {
+                margin-right: 0.5rem;
+                color:white;
+            }
         }
     }
 }
@@ -114,13 +125,6 @@ footer {
     a:hover {
         font-weight: bolder;
     }
-}
-
-/* Page Title */
-#pagetitle {
-    grid-area: title;
-    padding: 0.3rem;
-    margin: 1rem;
 }
 
 /* Flex setup */

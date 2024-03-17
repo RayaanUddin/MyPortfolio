@@ -1,6 +1,6 @@
 /* Navigation Bar */
 header {
-    nav {
+    nav #nav-overlay{
         gap: 0rem;
         grid-template-areas: 
         'menu login'
