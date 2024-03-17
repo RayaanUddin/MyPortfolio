@@ -19,6 +19,7 @@ header {
         width: 100%;
         font-family: "Ubuntu";
         color: beige;
+
         /* Navigation Bar Collapse items, when menu short */
         #hide-nav {
             color: inherit;
@@ -35,6 +36,8 @@ header {
         #hide-nav:active {
             background-color: #282727fa;
         }
+
+        /* Navigation Bar items */
         ul {
             display: flex;
         }
