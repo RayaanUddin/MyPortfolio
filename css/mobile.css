@@ -1,30 +1,28 @@
 /* Navigation Bar */
-header nav {
-    gap: 0rem;
-    grid-template-areas: 
-    'menu login';
-    display: grid;
-    img {
-        display: none;
+header {
+    nav {
+        gap: 0rem;
+        grid-template-areas: 
+        'menu login'
+        'nav nav';
+        display: grid;
+        img {
+            display: none;
+        }
+        #hide-nav {
+            grid-area: menu;
+            display: block;
+        }
+        ul {
+            grid-area: nav;
+            flex-direction: column;
+            width: 10rem;
+            background-color: inherit;
+        }
+        #login_signout_button {
+            grid-area: login;
+        }
     }
-    #hide-nav {
-        grid-area: menu;
-        display: block;
-    }
-    #hide-nav:hover + ul, ul:hover {
-        display: block;
-        flex-direction: column;
-        width: 10rem;
-        background-color: inherit;
-    }
-    ul {
-        display: none;
-        flex-direction: column;
-    }
-    #login_signout_button {
-        grid-area: login;
-    }
-
 }
 
 /* ################################################################### */
@@ -47,6 +45,27 @@ header nav {
         height: fit-content;
         img {
             display: none;
+        }
+    }
+}
+
+/* ################################################################### */
+/* ############################# container list ###################### */
+.content-list {
+    section {
+        .item-inner-container {
+            display: grid;
+            grid-template-areas:
+                'title'
+                'other-information'
+                'information'
+                'skills'
+                'extra'
+                'aside';
+            grid-template-columns: auto;
+        }
+        .other-information {
+            text-align: left;
         }
     }
 }
