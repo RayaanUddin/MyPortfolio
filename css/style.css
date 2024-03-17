@@ -138,39 +138,6 @@ footer {
     }
 }
 
-/* Box list container */
-.box-list {
-    background-color: #ffffff2f;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    height: fit-content;
-    margin: 1rem;
-    h2, h3 {
-        text-align: center;
-        background-color: rgb(36, 28, 20);
-        color: white;
-        padding: 0.3rem;
-        border-radius: 0.5rem 0.5rem 0 0;
-    }
-    ul {
-        list-style: none;
-        padding: 0.3rem;
-        border-radius: 0 0 0.5rem 0.5rem;
-        background-color: white;
-        li {
-            color: black;
-            padding: 0.3rem;
-            font-family: sans-serif;
-            margin: auto 0.3rem;
-            line-height: 1rem;
-            p {
-                color: inherit;
-                margin: inherit;
-            }
-        }
-    }
-}
-
 /* ################################################################## */
 /* ############################# Fonts ############################## */
 h1, h2, h3, h4, h5, h6, time {
@@ -267,35 +234,6 @@ a, li, ul {
     }
 }
 
-.row-list {
-    margin: 1rem;
-    ul {
-        overflow-x: scroll;
-        display: flex;
-        flex-direction: row-reverse;
-        margin: 1rem auto 1rem auto;
-        li {
-            min-width: 30%;
-            border-right: solid white 0.2rem;
-            padding: 1rem;
-            p {
-                font-size: 0.8rem;
-                margin-top: 0.5rem;
-            }
-            a:hover {
-                text-decoration: underline;
-                color: rgb(252, 205, 148);
-            }
-            a:active {
-                color: inherit;
-            }
-        }
-        li:first-child {
-            border-right: none;
-        } 
-    }
-}
-
 /* ################################################################## */
 /* ############################### Forms ############################ */
 
@@ -309,7 +247,7 @@ a, li, ul {
     form {
         font-family: sans-serif;
         margin: 10vh auto;
-        width: 50vw;
+        width: 50%;
         height: auto;
         max-width: 23rem;
         background-color: white;
@@ -437,8 +375,9 @@ a, li, ul {
 }
 
 /* ################################################################### */
-/* ############################# Content List ######################## */
+/* ################################## List ########################### */
 
+/* Content List */
 .content-list {
     /* Felexbox setup */
     display: flex;
@@ -534,29 +473,91 @@ a, li, ul {
             background-color: rgba(173, 54, 54, 0.646);
         }        
     }
+    /* Background images */
+    #education-level-6 {
+        background-image: url("/images/schools/qmul_building.jpeg");
+    }
+    #education-level-3 {
+        background-image: url("/images/schools/graveney_building.jpeg");
+    }
+    #education-level-2 {
+        background-image: url("/images/schools/graveney_building2.jpeg");
+    }
+    #project-4 {
+        background-image: url("/images/projects/web_development.jpg");
+    }
+    #project-3 {
+        background-image: url("/images/projects/java.jpg");
+    }
+    #project-2 {
+        background-image: url("/images/projects/lua.jpg");
+    }
+    #project-1 {
+        background-image: url("/images/projects/delphi.jpg");
+    }
 }
 
-/* Background images */
-#education-level-6 {
-    background-image: url("/images/schools/qmul_building.jpeg");
+/* Box list container */
+.box-list {
+    background-color: #ffffff2f;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    height: fit-content;
+    margin: 1rem;
+    h2, h3 {
+        text-align: center;
+        background-color: rgb(36, 28, 20);
+        color: white;
+        padding: 0.3rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+    ul {
+        list-style: none;
+        padding: 0.3rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        background-color: white;
+        li {
+            color: black;
+            padding: 0.3rem;
+            font-family: sans-serif;
+            margin: auto 0.3rem;
+            line-height: 1rem;
+            p {
+                color: inherit;
+                margin: inherit;
+            }
+        }
+    }
 }
-#education-level-3 {
-    background-image: url("/images/schools/graveney_building.jpeg");
-}
-#education-level-2 {
-    background-image: url("/images/schools/graveney_building2.jpeg");
-}
-#project-4 {
-    background-image: url("/images/projects/web_development.jpg");
-}
-#project-3 {
-    background-image: url("/images/projects/java.jpg");
-}
-#project-2 {
-    background-image: url("/images/projects/lua.jpg");
-}
-#project-1 {
-    background-image: url("/images/projects/delphi.jpg");
+
+/* Row List, with flexbox, uses scrolling */
+.row-list {
+    margin: 1rem;
+    ul {
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row-reverse;
+        margin: 1rem auto 1rem auto;
+        li {
+            min-width: 30%;
+            border-right: solid white 0.2rem;
+            padding: 1rem;
+            p {
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+            }
+            a:hover {
+                text-decoration: underline;
+                color: rgb(252, 205, 148);
+            }
+            a:active {
+                color: inherit;
+            }
+        }
+        li:first-child {
+            border-right: none;
+        } 
+    }
 }
 
 
