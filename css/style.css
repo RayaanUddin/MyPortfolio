@@ -178,7 +178,7 @@ a, li, ul {
 	background: #282727fa; 
 	border-radius: 0.7rem;
 } 
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:active, ::-webkit-scrollbar-thumb:hover {
 	background: bisque; 
 }
 ::-webkit-scrollbar-corner {
