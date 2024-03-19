@@ -9,11 +9,11 @@ header {
         img {
             display: none;
         }
-        #hide-nav {
+        #nav-show-button {
             grid-area: menu;
             display: block;
         }
-        ul {
+        #nav-pages-list {
             grid-area: nav;
             flex-direction: column;
             width: 10rem;

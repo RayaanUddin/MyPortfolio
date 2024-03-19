@@ -4,7 +4,6 @@
 /* Header */
 header {
     grid-area: header;
-    height: calc(fit-content + 2rem);
     position: relative;
     h1 {
         margin: 0;
@@ -31,7 +30,7 @@ header {
             color: beige;
 
             /* Navigation Bar Collapse items, when menu short */
-            #hide-nav {
+            #nav-show-button {
                 color: inherit;
                 display: none;
                 background-color: inherit;
@@ -40,17 +39,13 @@ header {
                 padding: 0 0.5rem;
                 width: fit-content;
             }
-            #hide-nav:hover {
+            #nav-show-button:hover {
                 background-color: #646464aa;
             }
-            #hide-nav:active {
+            #nav-show-button:active {
                 background-color: #282727fa;
             }
 
-            /* Navigation Bar items */
-            ul {
-                display: flex;
-            }
             li, #login_signout_button{
                 line-height: inherit;
                 a {
@@ -86,6 +81,14 @@ header {
             }
         }
     }
+}
+
+.show {
+    display: inherit;
+}
+
+.hide {
+    display: none;
 }
 
 /* Body */

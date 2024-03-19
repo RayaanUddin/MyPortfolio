@@ -1,13 +1,22 @@
-// Reset form confirmation
-document.querySelector('input[type="reset"]').addEventListener('click', function(e) {
-    let confirm = window.confirm('Are you sure you want to reset the form?');
-    if (confirm) {
-        document.querySelector('form').reset();
-        console.log('Form reset');
-        document.querySelector('input[type="text"]').focus();
-
-    } else {
-        e.preventDefault();
-    }
+// Nav bar show/hide button
+document.getElementById('nav-show-button').addEventListener('click', function(e) {
+    document.getElementById('nav-pages-list').classList.toggle('hide');
+    document.getElementById('nav-show-button-icon').classList.toggle("fa-bars");
+    document.getElementById('nav-show-button-icon').classList.toggle("fa-times");
 });
 
+window.onresize = function() {
+    if (window.innerWidth < 768) {
+        document.getElementById('nav-pages-list').classList.add('hide');
+    } else {
+        document.getElementById('nav-pages-list').classList.remove('hide');
+    }
+}
+
+window.onload = function() {
+    if (window.innerWidth < 768) {
+        document.getElementById('nav-pages-list').classList.add('hide');
+    } else {
+        document.getElementById('nav-pages-list').classList.remove('hide');
+    }
+}
