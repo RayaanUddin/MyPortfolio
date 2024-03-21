@@ -1,22 +1,35 @@
 // Nav bar show/hide button
+var navPagesList = document.getElementById('nav-pages-list');
+
 document.getElementById('nav-show-button').addEventListener('click', function(e) {
-    document.getElementById('nav-pages-list').classList.toggle('hide');
-    document.getElementById('nav-show-button-icon').classList.toggle("fa-bars");
-    document.getElementById('nav-show-button-icon').classList.toggle("fa-times");
+    navPagesList.classList.toggle('hide');
+    updateMenuButton();
 });
+
+function updateMenuButton() {
+    let navShowButton = document.getElementById('nav-show-button');
+    let navShowButton_icon = navShowButton.querySelector('i');
+    if (navPagesList.classList.contains('hide')) {
+        navShowButton_icon.classList.replace("fa-times", "fa-bars");
+    } else {
+        navShowButton_icon.classList.replace("fa-bars","fa-times");
+    }
+}
 
 window.onresize = function() {
     if (window.innerWidth <= 768) {
-        document.getElementById('nav-pages-list').classList.add('hide');
+        navPagesList.classList.add('hide');
     } else {
-        document.getElementById('nav-pages-list').classList.remove('hide');
+        navPagesList.classList.remove('hide');
     }
+    updateMenuButton();
 }
 
 window.onload = function() {
     if (window.innerWidth <= 768) {
-        document.getElementById('nav-pages-list').classList.add('hide');
+        navPagesList.classList.add('hide');
     } else {
-        document.getElementById('nav-pages-list').classList.remove('hide');
+        navPagesList.classList.remove('hide');
     }
+    updateMenuButton();
 }
