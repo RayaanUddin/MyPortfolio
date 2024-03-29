@@ -1,4 +1,5 @@
 <?php
+session_start();
 $pages = array(
     array("index.php", "fa fa-fw fa-home", "Home"),
     array("skills.php", "fa fa-search", "Skills", "Skills List"),
@@ -22,7 +23,11 @@ for ($i = 0; $i < count($pages); $i++) {
     }
 }
 echo "</ul>";
-echo "<div id='login_signout_button'><a href='login.php'></i>Login</a></div>";
+if ($_SESSION["loggedIn"] == false) {
+    echo "<div id='login_signout_button'><a href='login.php'></i>Login</a></div>";
+} else {
+    echo "<div id='login_signout_button'><a href='logout.php'></i>Sign Out</a></div>";
+}
 echo "</div>";
 echo "</nav>";
 if (isset($current_page_index) && isset($pages[$current_page_index][3])) {

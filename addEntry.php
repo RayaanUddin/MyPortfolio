@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!isset($_SESSION['loggedIn'])) {
-        header("Location: login.php");
+        header("Location: login.php?error=Required to login first");
         exit();
     }
 ?>
