@@ -25,23 +25,9 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <nav>
-                <div id="nav-overlay">
-                    <img src="images/logo.png" alt="Logo" />
-                    <button id="nav-show-button"><i class="fa fa-bars" aria-hidden="true"></i>Menu</button>
-                    <ul id="nav-pages-list" class="show hide">
-                        <li><a href="index.php"><i class="fa fa-fw fa-home"></i>Home</a></li>
-                        <li><a href="skills.html"><i class="fa fa-search"></i>Skills</a></li>
-                        <li><a href="education.html"><i class="fa fa-graduation-cap"></i>Education</a></li>
-                        <li id="selectedpage"><a href="#"><i class="fa fa-laptop"></i>Projects</a></li>
-                        <li><a href="viewBlog.php"><i class="fa fa-pencil-square-o"></i>Blog</a></li>
-                    </ul>
-                    <div id="login_signout_button"><a href="login.php"></i>Login</a></div>
-                </div>
-            </nav>
-            <h1>My &#34;Personal&#34; Projects</h1>
-        </header>
+        <?php
+            include 'header.php';
+        ?>
         <article id="projects">
             <p>
                 Here are some of the projects I have worked on. 

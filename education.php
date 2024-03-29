@@ -27,7 +27,6 @@
     <div class="container">
         <?php
             include 'header.php';
-            header_page("education.php", "Education &#38; Qualifications");
         ?>
         <article id="education">
             <p>
