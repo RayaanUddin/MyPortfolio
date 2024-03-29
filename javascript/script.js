@@ -11,6 +11,8 @@ function updateMenuButton() {
     let navShowButton_icon = navShowButton.querySelector('i');
     if (navPagesList.classList.contains('hide')) {
         navShowButton_icon.classList.replace("fa-times", "fa-bars");
+        navShowButton.removete
+        // navShowButton.replaceChild(navShowButton.childNodes.div, document.createTextNode("Hello"));
     } else {
         navShowButton_icon.classList.replace("fa-bars","fa-times");
     }

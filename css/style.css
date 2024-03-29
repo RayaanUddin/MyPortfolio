@@ -38,6 +38,10 @@ header {
                 text-align: left;
                 padding: 0 0.5rem;
                 width: fit-content;
+                div {
+                    color: inherit;
+                    display: inline;
+                }
             }
             #nav-show-button:hover {
                 background-color: #646464aa;
@@ -383,6 +387,15 @@ a, li, ul {
     }
 }
 
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 0;
+    p {
+        color: inherit;
+    }
+}
+
 /* ################################################################### */
 /* ################################## List ########################### */
 
@@ -484,25 +497,25 @@ a, li, ul {
     }
     /* Background images */
     #education-level-6 {
-        background-image: url("/images/schools/qmul_building.jpeg");
+        background-image: url("../images/schools/qmul_building.jpeg");
     }
     #education-level-3 {
-        background-image: url("/images/schools/graveney_building.jpeg");
+        background-image: url("../images/schools/graveney_building.jpeg");
     }
     #education-level-2 {
-        background-image: url("/images/schools/graveney_building2.jpeg");
+        background-image: url("../images/schools/graveney_building2.jpeg");
     }
     #project-4 {
-        background-image: url("/images/projects/web_development.jpg");
+        background-image: url("../images/projects/web_development.jpg");
     }
     #project-3 {
-        background-image: url("/images/projects/java.jpg");
+        background-image: url("../images/projects/java.jpg");
     }
     #project-2 {
-        background-image: url("/images/projects/lua.jpg");
+        background-image: url("../images/projects/lua.jpg");
     }
     #project-1 {
-        background-image: url("/images/projects/delphi.jpg");
+        background-image: url("../images/projects/delphi.jpg");
     }
 }
 

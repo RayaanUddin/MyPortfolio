@@ -43,7 +43,7 @@ footer {
         margin-top: 0;
         margin-bottom: 0;
         div {
-            background-image: url("/images/me.png");
+            background-image: url("../images/me.png");
             background-size: cover;
         }
     }
