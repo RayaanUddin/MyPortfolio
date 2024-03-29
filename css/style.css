@@ -601,6 +601,11 @@ a, li, ul {
             margin-left: auto;
         }
         border-bottom: 0.2rem solid white;
+        #author {
+            font-size: 0.7rem;
+            color: #a29f9f;
+            margin-left: auto;
+        }
     }
 }
 #addpost_button {

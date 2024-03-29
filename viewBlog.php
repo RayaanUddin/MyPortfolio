@@ -30,42 +30,22 @@
         ?>
         <a id="addpost_button" href="addEntry.php">Add Post</a>
         <section id="blog">
-            <article>
-                <time datetime="2024-01-01">1st January 2024</time>
-                <h3>Blog Post 1 (TEST)</h3>
-                <p>
-                    I have been working on a new messaging app in Java. 
-                    It is a simple app that allows users to send messages to each other. 
-                    I have been working on this project for a few months now and I am happy to say that it is almost complete. 
-                    I will be releasing it soon.
-                </p>
-            </article>
-            <article>
-                <time datetime="2024-01-02">2nd January 2024</time>
-                <h3>Blog Post 2 (TEST)</h3>
-                <p>
-                    I have been working on a new messaging app in Java. 
-                    It is a simple app that allows users to send messages to each other. 
-                    I have been working on this project for a few months now and I am happy to say that it is almost complete. 
-                    I will be releasing it soon.
-                </p>
-            </article>
+            <?php
+                include 'database.php';
+                $posts = updatePosts();
+                for ($i = 0; $i < count($posts); $i++) {
+                    echo "<article>";
+                    echo "<time datetime='".$posts[$i]->date."'>".$posts[$i]->date."</time>";
+                    echo "<h3>".$posts[$i]->title."</h3>";
+                    echo "<p>".$posts[$i]->content."</p>";
+                    echo "<p id='author'>Author: ".$posts[$i]->authorFullname."</p>";
+                    echo "</article>";
+                }
+            ?>
         </section>
-        <footer>
-            <section id="socials">
-                <a href="https://www.linkedin.com/in/rayaan-uddin/"><img alt="RayaanUddin | LinkedIn" src="images/socials/linkedin.svg" /></a>
-                <a href="https://www.instagram.com/rayaanuddin6/"><img alt="RayaanUddin | Instagram" src="images/socials/instagram.svg" /></a>
-                <a href="mailto:rayaan.uddin@outlook.com"><img alt="RayaanUddin | Email" src="images/socials/mail.svg" /></a>
-            </section>
-            <section>
-                Copyright © 2024 Rayaan Uddin. All rights reserved.
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="login.php">Manual login</a></li>
-                    <li><a href="mailto:rayaan.uddin@outlook.com">Contact me via mail</a></li>
-                </ul>
-            </section>
-        </footer>
+        <?php
+            include 'footer.php';
+        ?>
     </div>
 </body>
 </html>

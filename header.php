@@ -23,10 +23,10 @@ for ($i = 0; $i < count($pages); $i++) {
     }
 }
 echo "</ul>";
-if ($_SESSION["loggedIn"] == false) {
-    echo "<div id='login_signout_button'><a href='login.php'></i>Login</a></div>";
-} else {
+if ($_SESSION["loggedIn"] == true) {
     echo "<div id='login_signout_button'><a href='logout.php'></i>Sign Out</a></div>";
+} else {
+    echo "<div id='login_signout_button'><a href='login.php'></i>Login</a></div>";
 }
 echo "</div>";
 echo "</nav>";

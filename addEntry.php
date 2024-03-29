@@ -36,7 +36,7 @@
         <?php
             include 'header.php';
         ?>
-        <form action="https://drusmannaeem.co.uk/process.php" method="get">
+        <form action="addPost.php" method="get">
             <h1>Add Blog</h1>
             <div class="wrap-input">
                 <input type="text" name="title" id="title" placeholder="" required>
