@@ -1,6 +1,6 @@
 <?php
-    session_start();
     include "database.php";
+
 
     $account = new Account();
 
@@ -9,10 +9,14 @@
     if ($account->login($email, $password) == true) {
         $_SESSION['account'] = $account;
         $_SESSION['loggedIn'] = true;
-        header('Location: addEntry.php');
+        if ($account->isAdmin()) {
+            header('Location: ../../addEntry.php');
+        } else {
+            header('Location: ../../viewBlog.php');
+        }
         exit();
     } else {
-        header('Location: login.php?error=Invalid email or password');
+        header('Location: ../../login.php?error=Invalid email or password');
         exit();
     }
 ?>
