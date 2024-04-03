@@ -88,6 +88,11 @@
                     echo "<a class='comments_button' href='viewBlog.php?id=".$posts[$i]->id."'><i class='fa fa-comments-o'></i><p>".count($posts[$i]->comments)."</p></a>";
                     echo "</article>";
                 }
+                if (count($posts) === 0) { ?>
+                    <article id="no_posts">
+                        <p class="content">No posts found</p>
+                    </article>
+                <?php }
                 echo "</section>";
             }
             include 'scripts/php/footer.php';
