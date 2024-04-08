@@ -2,7 +2,7 @@
 if ($_SESSION["loggedIn"] == true) {
     $postId = $_GET['postId'];
     $accountId = $_SESSION["account"]->id;
-    if (isset($commentId)) {
+    if (isset($_GET['commentId'])) {
         if (deleteComment($_GET['commentId'])) {
             $commentId = $_GET['commentId'];
             header("Location: ../../viewBlog.php?id=$postId");
