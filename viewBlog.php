@@ -1,6 +1,5 @@
 <?php
     include 'scripts/php/database.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +40,7 @@
                         echo "<p class='comment_author'>".$post->comments[$i]->authorFullname."</p>";
                         echo "<p class='comment_content'>".$post->comments[$i]->comment."</p>";
                         echo "<time datetime='".$post->comments[$i]->get_date_str()."'>".$post->comments[$i]->get_date_str()."</time>";
-                        if ($post->comments[$i]->accountId == $_SESSION['account']->id || $_SESSION['account']->isAdmin()) {
+                        if (isset($_SESSION['account']) && ($post->comments[$i]->accountId == $_SESSION['account']->id || $_SESSION['account']->isAdmin())) {
                             echo '<a class="post_comment_delete" href="scripts/php/deleteBlog.php?commentId='.$post->comments[$i]->id.'&postId='.$_GET['id'].'"><i class="fa fa-trash"></i></a>';
                         }
                         echo "</li>";
@@ -81,7 +80,7 @@
                     echo "<time datetime='".$posts[$i]->date."'>".$posts[$i]->get_date_str()."</time>";
                     echo "<h3>".$posts[$i]->title."</h3>";
                     echo "<p class='content'>".$posts[$i]->content."</p>";
-                    if ($posts[$i]->accountId == $_SESSION['account']->id || $_SESSION['account']->isAdmin()) {
+                    if (isset($_SESSION['account']) && ($posts[$i]->accountId == $_SESSION['account']->id || $_SESSION['account']->isAdmin())) {
                         echo '<a class="post_comment_delete" href="scripts/php/deleteBlog.php?postId='.$posts[$i]->id.'"><i class="fa fa-trash"></i></a>';
                     }
                     echo "<p class='author'>Author: ".$posts[$i]->authorFullname."</p>";

@@ -170,7 +170,7 @@ class Post {
 
     private function getComments() {
         global $db;
-        $sql = "SELECT * FROM comments WHERE blogId = '".$this->id."' ORDER BY date DESC";
+        $sql = "SELECT * FROM comments WHERE blogId = '".$this->id."'";
         $result = $db->query($sql);
         $comments = array();
         if ($result->num_rows > 0) {
@@ -206,7 +206,7 @@ class Post {
         }
 
         // Get posts comments
-        $this->comments = $this->getComments();
+        $this->comments = orderByDateDesc($this->getComments());
     }
 }
 
@@ -321,24 +321,7 @@ function deletePost($id) {
                 return false;
             }
         } else {
-            $accountId = $_SESSION["account"]->id;
-            $sql = "SELECT blogId FROM blog WHERE blogId = '".$id."' AND accountId = '".$accountId."'";
-            $result = $db->query($sql);
-            if ($result->num_rows === 1) {
-                $sql = "DELETE FROM blog WHERE blogId = '".$id."' AND accountId = '".$accountId."'";
-                if ($db->query($sql) == true) {
-                    $sql = "DELETE FROM comments WHERE blogId = '".$id."'";
-                    if ($db->query($sql) == true) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+            return false;
         }
     } else {
         return false;
