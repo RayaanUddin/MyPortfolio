@@ -18,7 +18,7 @@
             } ?>
             </ul>
             <?php
-            if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
+            if (isset($_SESSION["user"])) {
                 echo "<div id='login_signout_button'><a href='scripts/php/logout.php'></i>Sign Out</a></div>";
             } else {
                 echo "<div id='login_signout_button'><a href='login.php'></i>Login</a></div>";

@@ -26,6 +26,7 @@ header {
             font-size: 1.2rem;
             background-color: #282727fa;
             width: 100%;
+            z-index: 1;
             font-family: "Ubuntu";
             color: beige;
 

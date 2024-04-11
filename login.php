@@ -13,11 +13,11 @@
         <form action="scripts/php/login_verification.php" method="post">
             <h1>Login</h1>
             <div class="wrap-input">
-                <input type="email" name="email" placeholder="" id="email" required>
+                <input type="email" name="email" placeholder="" id="email">
                 <label for="email">Email</label>
             </div>
             <div class="wrap-input">
-                <input type="password" name="password" id="password" placeholder="" required/>
+                <input type="password" name="password" id="password" placeholder=""/>
                 <label for="password">Password</label>
             </div>
             <?php if (isset($_GET['error'])) {

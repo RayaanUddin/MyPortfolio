@@ -48,6 +48,10 @@ document.getElementById('login_signout_button').addEventListener('click', functi
     }
 });
 
+// Form validation
+var form = document.querySelector('form');
+var inputFields = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], textarea');
+
 // Reset form confirmation
 var resetButton = document.querySelector('input[type="reset"]') !== null;
 if (resetButton) {
@@ -57,7 +61,6 @@ if (resetButton) {
             document.querySelector('form').reset();
             console.log('Form reset');
             document.querySelector('input[type="text"]').focus();
-    
         } else {
             e.preventDefault();
         }
@@ -68,11 +71,12 @@ if (resetButton) {
 var createAccountForm = document.getElementById('create-account-form');
 if (createAccountForm) {
     createAccountForm.addEventListener('submit', function(e) {
-        let password = document.getElementById('password').value;
-        let confirmPassword = document.getElementById('reenter-password').value;
-        if (password !== confirmPassword) {
+        let password = document.getElementById('password');
+        let confirmPassword = document.getElementById('reenter-password');
+        if (password.value !== confirmPassword.value) {
             e.preventDefault();
             alert('Passwords do not match');
+            confirmPassword.focus();
         }
     });
 }
@@ -82,13 +86,48 @@ var previewButton = document.getElementById('blog-post-preview');
 if (previewButton) {
     previewButton.addEventListener('click', function(e) {
         e.preventDefault();
-        let title = document.getElementById('title').value;
-        let content = document.getElementById('content').value;
-        if (title == "" || content == "") {
+        let title = document.getElementById('title');
+        let content = document.getElementById('content');
+        let incomplete = false;
+        inputFields.forEach(function(inputField) {
+            if (inputField.value.trim() == "") {
+                incomplete = true;
+                inputField.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
+            }
+        });
+        if (incomplete) {
             alert('Please fill in all fields');
-            return;
+            return
         }
-        window.location.href = "viewBlog.php?title="+title+"&content="+content;
+        content.value = content.value.replace(/\n/g, "<br>");
+        window.location.href = "viewBlog.php?title="+title.value+"&content="+content.value;
+    });
+}
+
+// Submit button
+if (form) {
+    form.addEventListener('submit', function(e) {
+        let incomplete = false;
+        inputFields.forEach(function(inputField) {
+            if (inputField.value.trim() == "") {
+                e.preventDefault();
+                incomplete = true;
+                inputField.value = "";
+                inputField.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
+            }
+        });
+        if (incomplete) {
+            alert('Please fill in all fields');
+        }
+    });
+}
+
+
+if (inputFields) {
+    inputFields.forEach(function(inputField) {
+        inputField.addEventListener('focus', function() {
+            inputField.style.backgroundColor = "white";
+        });
     });
 }
 

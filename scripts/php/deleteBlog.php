@@ -1,19 +1,19 @@
 <?php include("database.php");
-if ($_SESSION["loggedIn"] == true) {
-    $postId = $_GET['postId'];
-    $accountId = $_SESSION["account"]->id;
+if (isset($_SESSION["user"])) {
+    $blogId = $_GET['blogId'];
+    $accountId = $_SESSION["user"]->id;
     if (isset($_GET['commentId'])) {
         if (deleteComment($_GET['commentId'])) {
             $commentId = $_GET['commentId'];
-            header("Location: ../../viewBlog.php?id=$postId");
+            header("Location: ../../viewBlog.php?id=$blogId");
         } else {
-            header("Location: ../../viewBlog.php?id=$postId&error=You are not the author of this comment");
+            header("Location: ../../viewBlog.php?id=$blogId&error=You are not the author of this comment or an admin");
         }
-    } elseif (isset($postId)) {
-        if (deletePost($postId)) {
+    } elseif (isset($blogId)) {
+        if (deleteBlog($blogId)) {
             header("Location: ../../viewBlog.php");
         } else {
-            header("Location: ../../viewBlog.php?error=You are not the author of this post");
+            header("Location: ../../viewBlog.php?error=You are not the an admin");
         }
     }
     exit();

@@ -7,12 +7,11 @@ $password = $_POST['password'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 
-$account = new Account();
-if ($account->register($fname, $lname, $email, $password, 0)) {
+if (register($fname, $lname, $email, $password, 0)) {
     header('Location: ../../login.php?error=Account created successfully');
     exit();
 } else {
-    header('Location: ../../login.php?error=Account already exists');
-    exit();
+    //header('Location: ../../login.php?error=Account already exists');
+    //exit();
 }
 ?>

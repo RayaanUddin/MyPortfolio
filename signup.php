@@ -13,23 +13,23 @@
         <form action="scripts/php/createaccount.php" method="post" id="create-account-form">
             <h1>Signup</h1>
             <div class="wrap-input">
-                <input type="text" id="fname" name="fname" pattern="[A-Za-z]{3,50}" title="Name must contain alphabet letters. Length must be between 3 and 50." required placeholder>
-                <label for="emfnameail">First Name</label>
+                <input type="text" id="fname" name="fname" pattern="[A-Za-z]{3,50}" title="Name must contain alphabet letters. Length must be between 3 and 50." placeholder>
+                <label for="fname">First Name</label>
             </div>
             <div class="wrap-input">
-            <input type="text" id="lname" name="lname" pattern="[A-Za-z]{3,50}" title="Name must contain alphabet letters. Length must be between 3 and 50." required placeholder>
+            <input type="text" id="lname" name="lname" pattern="[A-Za-z]{3,50}" title="Name must contain alphabet letters. Length must be between 3 and 50." placeholder>
                 <label for="lname">Last Name</label>
             </div>
             <div class="wrap-input">
-                <input type="email" name="email" placeholder="" id="email" required>
+                <input type="email" name="email" placeholder="" id="email">
                 <label for="email">Email</label>
             </div>
             <div class="wrap-input">
-                <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least a number, a uppercase, and at least 8 or more characters" placeholder required>
+                <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least a number, a uppercase, and at least 8 or more characters" placeholder>
                 <label for="password">Password</label>
             </div>
             <div class="wrap-input">
-            <input type="password" id="reenter-password" name="reenter-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least a number, a uppercase, and at least 8 or more characters" placeholder required>
+            <input type="password" id="reenter-password" name="reenter-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least a number, a uppercase, and at least 8 or more characters" placeholder>
                 <label for="reenter-password">Repeat Password</label>
             </div>
             <?php if (isset($_GET['error'])) {

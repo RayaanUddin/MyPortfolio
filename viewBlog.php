@@ -18,30 +18,30 @@
             </section>
         <?php
             if (isset($_GET['id'])) {
-                $post = getPost($_GET['id']);
-                if ($post != null) {
+                $blog = getBlog($_GET['id']);
+                if ($blog != null) {
                     echo "<article id='blog_full'>";
                     echo "<nav id='blog-nav'>";
                     echo "<a href='viewBlog.php#".$_GET['id']."'><i class='fa fa-arrow-left'></i><p>Back</p></a>";
                     echo "</nav>";
-                    echo "<time datetime='".$post->date."'>".$post->date."</time>";
-                    echo "<h3>".$post->title."</h3>";
-                    echo "<p class='content'>".$post->content."</p>";
-                    echo "<p class='author'>Author: ".$post->authorFullname."</p>";
+                    echo "<time datetime='".$blog->date."'>".$blog->getLongDate_toString()."</time>";
+                    echo "<h3>".$blog->title."</h3>";
+                    echo "<p class='content'>".$blog->content."</p>";
+                    echo "<p class='author'>Author: ".$blog->author->getFullname()."</p>";
                     echo "<div id='comments'>";
                     echo "<form action='scripts/php/addComment.php' method='get'>";
-                    echo "<textarea name='comment' placeholder='Enter comment here' required></textarea>";
-                    echo "<input type='hidden' name='id' value='".$post->id."' required>";
+                    echo "<textarea name='comment' placeholder='Enter comment here'></textarea>";
+                    echo "<input type='hidden' name='id' value='".$blog->id."' required>";
                     echo "<input type='submit' value='Send'>";
                     echo "</form>";
                     echo "<ul id='comments_list'>";
-                    for ($i = 0; $i < count($post->comments); $i++) {
+                    for ($i = 0; $i < count($blog->comments); $i++) {
                         echo "<li class='comment'>";
-                        echo "<p class='comment_author'>".$post->comments[$i]->authorFullname."</p>";
-                        echo "<p class='comment_content'>".$post->comments[$i]->comment."</p>";
-                        echo "<time datetime='".$post->comments[$i]->get_date_str()."'>".$post->comments[$i]->get_date_str()."</time>";
-                        if (isset($_SESSION['account']) && ($post->comments[$i]->accountId == $_SESSION['account']->id || $_SESSION['account']->isAdmin())) {
-                            echo '<a class="post_comment_delete" href="scripts/php/deleteBlog.php?commentId='.$post->comments[$i]->id.'&postId='.$_GET['id'].'"><i class="fa fa-trash"></i></a>';
+                        echo "<p class='comment_author'>".$blog->comments[$i]->author->getFullname()."</p>";
+                        echo "<p class='comment_content'>".$blog->comments[$i]->comment."</p>";
+                        echo "<time datetime='".$blog->comments[$i]->date."'>".$blog->comments[$i]->timeAgo_toString()."</time>";
+                        if (isset($_SESSION['user']) && ($blog->comments[$i]->author->id == $_SESSION['user']->id || $_SESSION['user']->isAdmin())) {
+                            echo '<a class="post_comment_delete" href="scripts/php/deleteBlog.php?commentId='.$blog->comments[$i]->id.'&blogId='.$_GET['id'].'"><i class="fa fa-trash"></i></a>';
                         }
                         echo "</li>";
                     }
@@ -50,12 +50,12 @@
                     echo "</article>";
                 }
                 else {
-                    echo "<p>Post not found</p>";
+                    echo "<p>Blog not found</p>";
                 }
             }
             else {
-                $posts = orderByDateDesc(updatePosts());
-                if (isset($_GET['title']) && isset($_GET['content']) && isset($_SESSION['account']) && $_SESSION['account']->isAdmin()) {
+                $blogs = orderByDateDesc(getAllBlogs());
+                if (isset($_GET['title']) && isset($_GET['content']) && isset($_SESSION['user']) && $_SESSION['user']->isAdmin()) { // Preview Blog
                     ?>
                     <nav id="blog-nav">
                         <a href="addEntry.php?title=<?php echo $_GET['title']; ?>&content=<?php echo $_GET['content']; ?>"><i class='fa fa-arrow-left'></i><p>Back</p></a>
@@ -68,26 +68,26 @@
                         <time>Preview</time>
                         <h3><?php echo $_GET['title']; ?></h3>
                         <p class="content"><?php echo $_GET['content']; ?></p>
-                        <p class="author">Author: <?php echo $_SESSION['account']->getFullname(); ?></p>
+                        <p class="author">Author: <?php echo $_SESSION['user']->getFullname(); ?></p>
                     </article>
                 <?php } else { ?>
                     <a id='addpost_button' href='addEntry.php'>Add Post</a>
                     <section id='blog'>
                 <?php }
 
-                for ($i = 0; $i < count($posts); $i++) {
-                    echo "<article id=".$posts[$i]->id." >";
-                    echo "<time datetime='".$posts[$i]->date."'>".$posts[$i]->get_date_str()."</time>";
-                    echo "<h3>".$posts[$i]->title."</h3>";
-                    echo "<p class='content'>".$posts[$i]->content."</p>";
-                    if (isset($_SESSION['account']) && ($posts[$i]->accountId == $_SESSION['account']->id || $_SESSION['account']->isAdmin())) {
-                        echo '<a class="post_comment_delete" href="scripts/php/deleteBlog.php?postId='.$posts[$i]->id.'"><i class="fa fa-trash"></i></a>';
+                for ($i = 0; $i < count($blogs); $i++) {
+                    echo "<article id=".$blogs[$i]->id." >";
+                    echo "<time datetime='".$blogs[$i]->date."'>".$blogs[$i]->getLongDate_toString()."</time>";
+                    echo "<h3>".$blogs[$i]->title."</h3>";
+                    echo "<p class='content'>".$blogs[$i]->content."</p>";
+                    if (isset($_SESSION['user']) && ($_SESSION['user']->isAdmin())) {
+                        echo '<a class="post_comment_delete" href="scripts/php/deleteBlog.php?blogId='.$blogs[$i]->id.'"><i class="fa fa-trash"></i></a>';
                     }
-                    echo "<p class='author'>Author: ".$posts[$i]->authorFullname."</p>";
-                    echo "<a class='comments_button' href='viewBlog.php?id=".$posts[$i]->id."'><i class='fa fa-comments-o'></i><p>".count($posts[$i]->comments)."</p></a>";
+                    echo "<p class='author'>Author: ".$blogs[$i]->author->getFullName()."</p>";
+                    echo "<a class='comments_button' href='viewBlog.php?id=".$blogs[$i]->id."'><i class='fa fa-comments-o'></i><p>".count($blogs[$i]->comments)."</p></a>";
                     echo "</article>";
                 }
-                if (count($posts) === 0) { ?>
+                if (count($blogs) === 0) { ?>
                     <article id="no_posts">
                         <p class="content">No posts found</p>
                     </article>
