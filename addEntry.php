@@ -22,7 +22,7 @@
         <form action="scripts/php/addPost.php" method="get">
             <h1>Add Blog</h1>
             <div class="wrap-input">
-                <input type="text" name="title" id="title" placeholder="" value=<?php echo (isset($_GET['title']) ? $_GET['title'] : "") ?>>
+                <input type="text" name="title" id="title" placeholder="" value="<?php echo (isset($_GET['title']) ? $_GET['title'] : "") ?>">
                 <label for="title">Title</label>
             </div>
             <textarea name="content" id="content" placeholder="Enter your text here" rows="5"><?php echo (isset($_GET['content']) ? $_GET['content'] : "") ?></textarea>
