@@ -180,15 +180,66 @@ class Blog extends Post {
 }
 
 // AI Generated sorting algorithm
-function orderByDateDesc($objectArray) {
-    // Custom sorting function to sort objects by date in descending order
-    usort($objectArray, function($a, $b) {
-        return strcmp($b->date, $a->date);
-    });
+// Start
+function mergeSort(&$arr, $left, $right) {
+    if ($left < $right) {
+        $mid = (int)(($left + $right) / 2);
 
-    // Return the sorted array
-    return $objectArray;
+        mergeSort($arr, $left, $mid);
+        mergeSort($arr, $mid + 1, $right);
+
+        merge($arr, $left, $mid, $right);
+    }
 }
+
+function merge(&$arr, $left, $mid, $right) {
+    $n1 = $mid - $left + 1;
+    $n2 = $right - $mid;
+
+    $L = [];
+    $R = [];
+
+    for ($i = 0; $i < $n1; $i++)
+        $L[$i] = $arr[$left + $i];
+
+    for ($j = 0; $j < $n2; $j++)
+        $R[$j] = $arr[$mid + 1 + $j];
+
+    $i = 0;
+    $j = 0;
+    $k = $left;
+
+    while ($i < $n1 && $j < $n2) {
+        if ($L[$i]->date >= $R[$j]->date) {
+            $arr[$k] = $L[$i];
+            $i++;
+        } else {
+            $arr[$k] = $R[$j];
+            $j++;
+        }
+        $k++;
+    }
+
+    while ($i < $n1) {
+        $arr[$k] = $L[$i];
+        $i++;
+        $k++;
+    }
+
+    while ($j < $n2) {
+        $arr[$k] = $R[$j];
+        $j++;
+        $k++;
+    }
+}
+
+function orderByDateDesc($objects) {
+    $length = count($objects);
+    mergeSort($objects, 0, $length - 1);
+    return $objects;
+}
+
+// End
 
 // Gets all blogs from database
 function getAllBlogs() {
