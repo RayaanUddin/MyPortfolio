@@ -48,6 +48,16 @@ document.getElementById('login_signout_button').addEventListener('click', functi
     }
 });
 
+// Replace <br> with new line in textareas
+var textareas = document.querySelectorAll('textarea');
+if (textareas) {
+    textareas.forEach(function(textarea) {
+        textarea.addEventListener('focus', function() {
+            textarea.value = textarea.value.replace(/<br>/g, "\n");
+        });
+    });
+}
+
 // Form validation
 var form = document.querySelector('form');
 var inputFields = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], textarea');
