@@ -11,7 +11,7 @@ if (register($fname, $lname, $email, $password, 0)) {
     header('Location: ../../login.php?error=Account created successfully');
     exit();
 } else {
-    //header('Location: ../../login.php?error=Account already exists');
-    //exit();
+    header('Location: ../../signup.php?error=Account already exists');
+    exit();
 }
 ?>
