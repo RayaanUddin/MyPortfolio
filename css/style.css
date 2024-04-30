@@ -4,7 +4,6 @@
 /* Header */
 header {
     grid-area: header;
-    height: calc(fit-content + 2rem);
     position: relative;
     h1 {
         margin: 0;
@@ -27,11 +26,12 @@ header {
             font-size: 1.2rem;
             background-color: #282727fa;
             width: 100%;
+            z-index: 1;
             font-family: "Ubuntu";
             color: beige;
 
             /* Navigation Bar Collapse items, when menu short */
-            #hide-nav {
+            #nav-show-button {
                 color: inherit;
                 display: none;
                 background-color: inherit;
@@ -39,18 +39,18 @@ header {
                 text-align: left;
                 padding: 0 0.5rem;
                 width: fit-content;
+                div {
+                    color: inherit;
+                    display: inline;
+                }
             }
-            #hide-nav:hover {
+            #nav-show-button:hover {
                 background-color: #646464aa;
             }
-            #hide-nav:active {
+            #nav-show-button:active {
                 background-color: #282727fa;
             }
 
-            /* Navigation Bar items */
-            ul {
-                display: flex;
-            }
             li, #login_signout_button{
                 line-height: inherit;
                 a {
@@ -86,6 +86,14 @@ header {
             }
         }
     }
+}
+
+.show {
+    display: inherit;
+}
+
+.hide {
+    display: none;
 }
 
 /* Body */
@@ -237,6 +245,23 @@ a, li, ul {
 /* ################################################################## */
 /* ############################### Forms ############################ */
 
+/* Text Area */
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    border: #adadad 0.2rem solid;
+    width: 100%;
+    box-sizing: border-box;
+    padding: inherit;
+    padding: 0.5rem;
+    transition: all 0.7s;
+    resize: none;
+}
+textarea:focus, textarea:not(:placeholder-shown) {
+    border: black 0.2rem solid;
+    outline: none;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -255,9 +280,6 @@ a, li, ul {
         box-shadow: 0 0.3rem 0.5rem 0 #00000042;
         padding: 2rem 1rem 2rem 1rem;
         font-size: 1rem;
-        h1 {
-            color: rgb(42, 42, 42);
-        }
 
         /* Input setup */
         .wrap-input {
@@ -272,6 +294,7 @@ a, li, ul {
             font-family: inherit;
             font-size: inherit;
             border: none;
+            background-color: transparent;
             border-bottom: 0.2rem solid #adadad;
             font-family: inherit;
             width: 100%;
@@ -301,42 +324,36 @@ a, li, ul {
             top: -1rem;
         }
 
-        /* Text Area */
-        textarea {
-            font-family: inherit;
-            font-size: inherit;
-            border: #adadad 0.2rem solid;
-            width: 100%;
-            box-sizing: border-box;
-            padding: inherit;
-            padding: 0.5rem;
-            transition: all 0.7s;
-            resize: none;
-        }
-        ::-webkit-scrollbar-track {
+        ::-webkit-scrollbar-track {  
             background-color: white; 
 
         }
         
-        textarea:focus, textarea:not(:placeholder-shown) {
-            border: black 0.2rem solid;
-            outline: none;
-        }
-
-
-        /* Submit and Reset button */
-        input[type="submit"], input[type="reset"] {
+        /* Submit, Reset and Preview button */
+        input[type="submit"], input[type="reset"], #blog-post-preview {
             font-family: inherit;
+            display: block;
             color: black;
             padding: 0.7rem 1rem;
             border: rgb(107, 103, 103) 0.2rem outset;
+            background-color: rgb(236, 236, 236);
             border-radius: 0.5rem;
             cursor: pointer;
             margin: 1rem 0;
             font-size: 1.3rem;
             width: 100%;
+            box-sizing: border-box;
+            text-align: center;
             transition: all 0.5s;
         }
+        /* Submit and Reset Flexbox */
+        #blog-post-input-container {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            justify-content: center;
+        }
+
         input[type="reset"] {
             background-color: rgb(231, 231, 231);
         }
@@ -355,7 +372,14 @@ a, li, ul {
         input[type="submit"]:active {
             background-color: rgb(253, 240, 223);
         }
-        input[type="submit"]:active, input[type="reset"]:active {
+        #blog-post-preview:hover {
+            background-color: #b8b8b8;
+        }
+        #blog-post-preview:active {
+            background-color: rgb(236, 236, 236);
+        }
+        
+        input[type="submit"]:active, input[type="reset"]:active, #blog-post-preview:active {
             border-style: inset;
         }
 
@@ -366,6 +390,15 @@ a, li, ul {
             padding: 0.5rem;
             margin: 1rem;
             color: rgb(204, 204, 204);
+            h1 {
+                color: rgb(42, 42, 42);
+            }
+            a {
+                color: rgb(94, 135, 162);
+            }
+            a:hover {
+                font-weight: bold;    
+            }
             h2 {
                 font-size: inherit;
                 color: inherit;
@@ -376,6 +409,15 @@ a, li, ul {
                 color:inherit;
             }
         }
+    }
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 0;
+    p {
+        color: inherit;
     }
 }
 
@@ -480,25 +522,25 @@ a, li, ul {
     }
     /* Background images */
     #education-level-6 {
-        background-image: url("/images/schools/qmul_building.jpeg");
+        background-image: url("../images/schools/qmul_building.jpeg");
     }
     #education-level-3 {
-        background-image: url("/images/schools/graveney_building.jpeg");
+        background-image: url("../images/schools/graveney_building.jpeg");
     }
     #education-level-2 {
-        background-image: url("/images/schools/graveney_building2.jpeg");
+        background-image: url("../images/schools/graveney_building2.jpeg");
     }
     #project-4 {
-        background-image: url("/images/projects/web_development.jpg");
+        background-image: url("../images/projects/web_development.jpg");
     }
     #project-3 {
-        background-image: url("/images/projects/java.jpg");
+        background-image: url("../images/projects/java.jpg");
     }
     #project-2 {
-        background-image: url("/images/projects/lua.jpg");
+        background-image: url("../images/projects/lua.jpg");
     }
     #project-1 {
-        background-image: url("/images/projects/delphi.jpg");
+        background-image: url("../images/projects/delphi.jpg");
     }
 }
 
@@ -569,19 +611,88 @@ a, li, ul {
 /* ################################################################## */
 /* ############################### Blog ############################# */
 
+.post_comment_delete {
+    grid-area: delete;
+    cursor: pointer;
+    color: white;
+    margin-left: auto;
+    i {
+        color: inherit;
+        font-size: 0.9rem;
+    }
+}
+
+#blog-error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 0.5rem;
+    p {
+        color: inherit;
+    }
+
+}
+
 #blog {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    #preview {
+        background-color: #0b8ca92b;
+        box-shadow: inset 0 0 0 0.2rem #0b8ca92b;
+    }
     article {
         width: 70%;
         margin: auto;
         padding: 1rem;
-        display: flex;
+        display: grid;
+        grid-template-areas:
+            'comments time'
+            'comments title'
+            'comments content'
+            'delete author';
+        grid-template-columns: min-content auto;
         flex-direction: column;
         gap: 0.4rem;
         time {
+            grid-area: time;
             margin-left: auto;
+        }
+        h3 {
+            grid-area: title;
+        }
+        .content {
+            grid-area: content;
+        }
+        .author {
+            grid-area: author;
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: #a29f9f;
+        }
+        .comments_button {
+            grid-area: comments;
+            color: white;
+            margin-top: auto;
+            margin-bottom: auto;
+            display: flex;
+            flex-direction: row;
+            gap: 0.1rem;
+            a, i {
+                color: inherit;
+                font-size: 1.5rem;
+            }
+            p {
+                color: inherit;
+                cursor: pointer;
+                font-size: 0.8rem;
+            }
+            margin-right: 0.5rem;
+        }
+        .comments_button:hover {
+            color: #a29f9f;
+        }
+        .comments_button:active {
+            color: white;
         }
         border-bottom: 0.2rem solid white;
     }
@@ -601,4 +712,95 @@ a, li, ul {
 }
 #addpost_button:active {
     background-color: rgb(235, 235, 235);
+}
+
+#blog-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+    color: #0b8ca9;
+    i, p {
+        color: inherit;
+        font-size: 1.5rem;
+    }
+    a {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        cursor: pointer;
+        color: white;
+    }
+    a:hover {
+        color: #a29f9f;
+    }
+    a:active {
+        color: white;
+    }
+}
+
+#blog_full {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    time {
+        margin-left: auto;
+        font-size: 1.7rem;
+    }
+    h3 {
+        font-size: 2.3rem;
+    }
+    .content {
+        font-size: 1.5rem;
+    }
+    .author {
+        margin-left: auto;
+        font-size: 1rem;
+        color: #a29f9f;
+    }
+    #comments {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-bottom: 0.2rem solid white;
+        border-top: 0.2rem solid white;
+        padding: 1rem;
+        form {
+            display: flex;
+            flex-direction: row;
+        }
+        #comments_list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #2827275f;
+            .comment {
+                background-color: #2827278d;
+                display: grid;
+                grid-template-areas:
+                'author time' 
+                'content time'
+                'delete delete';
+                padding: 0.7rem;
+                border: solid 0.1rem #282727;
+                .comment_content {
+                    grid-area: content;
+                    padding: 0.5rem;
+                    overflow-x: hidden;
+                }
+                time {
+                    grid-area: time;
+                    font-size: 1rem;
+                    margin-left: auto;
+                    padding: 0.5rem;
+                }
+                .comment_author {
+                    grid-area: author;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+
+
+    }
 }
