@@ -662,6 +662,7 @@ textarea:focus, textarea:not(:placeholder-shown) {
         }
         .content {
             grid-area: content;
+            overflow-x: scroll;
         }
         .author {
             grid-area: author;
