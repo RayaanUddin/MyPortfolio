@@ -22,7 +22,7 @@
                     <div class="item-inner-container">
                         <h2>Student Report Generator</h2>
                         <time class="other-information" datetime="2021">
-                            2021 - 2023
+                            Sep 2022 - Apr 2023
                         </time>
                         <div class="box-list" id="skills">
                             <h3>Skills</h3>
@@ -53,7 +53,7 @@
                     <div class="item-inner-container">
                         <h2>Messaging App</h2>
                         <p class="other-information">
-                            2024 - Present
+                            Jan 2024 - Jan 2024
                         </p>
                         <div class="box-list" id="skills">
                             <h3>Skills</h3>
@@ -77,7 +77,7 @@
                     <div class="item-inner-container">
                         <h2>My Portfolio</h2>
                         <p class="other-information">
-                            Ongoing
+                            Mar 2024 - Apr 2024
                         </p>
                         <div class="box-list" id="skills">
                             <h3>Skills</h3>
@@ -90,7 +90,8 @@
                         </div>
                         <div class="main-information">
                             <p>
-                                This is my portfolio. It is a work in progress. I am currently working on it.
+                                This is my portfolio.
+                                <a href="https://www.rayaanuddin.co.uk">Live Preview!!!</a>
                             </p>
                             <p>
                                 I am using HTML, CSS, Php, and JavaScript to create this website.
@@ -100,8 +101,37 @@
                                 login using.
                             </p>
                         </div>
+                        <div class="media">
+                            <a href="https://github.com/RayaanUddin/MyPortfolio"><i class="fa fa-github" aria-hidden="true"></i>Available on GitHub</a>
+                        </div>
                     </div>
-                </section>     
+                </section>
+                <section id="project-4">
+                    <div class="item-inner-container">
+                        <h2>Ecommerce Website</h2>
+                        <p class="other-information">
+                            Jul 2024 - Aug 2024
+                        </p>
+                        <div class="box-list" id="skills">
+                            <h3>Skills</h3>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Php</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                        <div class="main-information">
+                            <p>
+                                A selling website using Stripe API to add products and handle payments/ orders.
+                                <a href="https://selling-website.rayaanuddin.co.uk">Live Preview!!!</a>
+                            </p>
+                        </div>
+                        <div class="media">
+                            <a href="https://github.com/RayaanUddin/selling-website"><i class="fa fa-github" aria-hidden="true"></i>Available on GitHub</a>
+                        </div>
+                    </div>
+                </section>
             </section>
         </article>
         <?php
