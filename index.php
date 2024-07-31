@@ -74,13 +74,13 @@
                 </li>
                 <li>
                     <h3>
-                        Ns Scripts | Founder
+                        Game Development | Cfx.re
                     </h3>
                     <time>
                         May 2023 - Present
                     </time>
                     <p>
-                        Founder of a small game development group. I create Lua programs for servers and provide customer service support, <a href="projects.html#">read more.</a>
+                        Founder of a small game development group. I create Lua programs for servers and provide customer service support.
                     </p>
                 </li>
             </ul>

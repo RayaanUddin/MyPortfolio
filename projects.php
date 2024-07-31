@@ -51,29 +51,6 @@
                 </section>
                 <section id="project-2">
                     <div class="item-inner-container">
-                        <h2>Founder of Ns Scripts</h2>
-                        <time class="other-information" datetime="2021">
-                            2021 - Present
-                        </time>
-                        <div class="box-list" id="skills">
-                            <h3>Skills</h3>
-                            <ul>
-                                <li>Lua</li>
-                                <li>Web Development</li>
-                                <li>Customer Service</li>
-                            </ul>
-                        </div>
-                        <div class="main-information">
-                            <p>
-                                Ns Scripts is a small company that I founded.
-                                A small game (FiveM) development company, which develops Lua programs for servers, and provide customer service support.
-                                Learnt how to use Lua for game projects in real life along with how to set up and manage employees within a company which also provides customer service.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section id="project-3">
-                    <div class="item-inner-container">
                         <h2>Messaging App</h2>
                         <p class="other-information">
                             2024 - Present
@@ -96,7 +73,7 @@
                         </div>
                     </div>
                 </section>
-                <section id="project-4">
+                <section id="project-3">
                     <div class="item-inner-container">
                         <h2>My Portfolio</h2>
                         <p class="other-information">
