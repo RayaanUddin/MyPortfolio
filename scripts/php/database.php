@@ -1,6 +1,6 @@
 <?php
 session_start();
-$db = new mysqli('localhost', 'RayaanUddin', 'Rayaan10', 'portfolio');
+$db = new mysqli('rayaanf947.mysql.db', 'rayaanf947', 'Rayaan10', 'rayaanf947');
 
 $permission_levels = array(
     0 => "User",
