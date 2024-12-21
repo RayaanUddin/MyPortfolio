@@ -21,10 +21,10 @@
                 <h2>About Me</h2>
                 <div>
                     <p>
-                        I am a first-year BSc student in computer science at Queen Mary University of London, where I am immersing myself in the world of programming and technology. I have hands-on experience in Java, C#, Pascal, HTML, CSS, JavaScript, and PHP, which have sharpened my coding skills and fueled my passion for creating innovative solutions.
+                        I am a second-year BSc student in computer science at Queen Mary University of London, where I am immersing myself in the world of programming and technology. I have hands-on experience in Java, C#, Pascal, HTML, CSS, JavaScript, and PHP, which have sharpened my coding skills and fueled my passion for creating innovative solutions.
                     </p>
                     <p>
-                        As a founder of a small game development group, I create Lua programs for servers and provide customer service support. I started this venture in May 2023.
+                        As a founder of a game development group, I create Lua programs for servers and provide customer service support. I started this venture in May 2023.
                     </p>
                     <p>
                         My goal is to pursue a career in software development/engineering, where I can contribute to building impactful and cutting-edge applications. I am excited about the endless possibilities that technology presents and eager to dive deep into the realms of coding and development.
