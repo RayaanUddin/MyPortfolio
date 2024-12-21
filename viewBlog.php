@@ -55,7 +55,7 @@
             }
             else {
                 $blogs = orderByDateDesc(getAllBlogs());
-                if (isset($_GET['title']) && isset($_GET['content']) && isset($_SESSION['user']) && $_SESSION['user']->isAdmin()) { // Preview Blog
+                if (isset($_GET['title']) && isset($_GET['content'])) { // Preview Blog
                     ?>
                     <nav id="blog-nav">
                         <a href="addEntry.php?title=<?php echo $_GET['title']; ?>&content=<?php echo $_GET['content']; ?>"><i class='fa fa-arrow-left'></i><p>Back</p></a>
@@ -70,9 +70,11 @@
                         <p class="content"><?php echo $_GET['content']; ?></p>
                         <p class="author">Author: <?php echo $_SESSION['user']->getFullname(); ?></p>
                     </article>
-                <?php } else { ?>
-                    <a id='addpost_button' href='addEntry.php'>Add Post</a>
-                    <section id='blog'>
+                <?php } else {
+                            if (isset($_SESSION['user']) && $_SESSION['user']->isAdmin()){?>
+                                <a id='addpost_button' href='addEntry.php'>Add Post</a>
+                            <?php } ?>
+                            <section id='blog'>
                 <?php }
 
                 for ($i = 0; $i < count($blogs); $i++) {

@@ -1,116 +1,162 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: localhost:8889
--- Generation Time: Apr 01, 2024 at 11:54 PM
--- Server version: 5.7.39
--- PHP Version: 7.4.33
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `portfolio`
---
-CREATE DATABASE IF NOT EXISTS `portfolio` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `portfolio`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `accounts`
---
-
 CREATE TABLE `accounts` (
-  `accountId` int(11) NOT NULL,
-  `fname` varchar(50) NOT NULL,
-  `lname` varchar(50) NOT NULL,
-  `email` varchar(320) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `permission` tinyint(1) NOT NULL DEFAULT '0'
+                            `accountId` int(11) NOT NULL,
+                            `fname` varchar(50) NOT NULL,
+                            `lname` varchar(50) NOT NULL,
+                            `email` varchar(320) NOT NULL,
+                            `password` varchar(60) NOT NULL,
+                            `permission` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog`
---
 
 CREATE TABLE `blog` (
-  `blogId` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `date` datetime NOT NULL,
-  `content` longtext NOT NULL,
-  `accountId` int(11) NOT NULL
+                        `blogId` int(11) NOT NULL,
+                        `title` varchar(50) NOT NULL,
+                        `date` datetime NOT NULL,
+                        `content` longtext NOT NULL,
+                        `accountId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
+CREATE TABLE `certification` (
+                                 `certificationId` int(11) NOT NULL,
+                                 `title` text NOT NULL,
+                                 `date` date NOT NULL,
+                                 `description` longtext NOT NULL,
+                                 `issuedBy` text NOT NULL,
+                                 `link` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `comments` (
-  `commentId` int(11) NOT NULL,
-  `comment` longtext NOT NULL,
-  `date` datetime NOT NULL,
-  `accountId` int(11) NOT NULL,
-  `blogId` int(11) NOT NULL
+                            `commentId` int(11) NOT NULL,
+                            `comment` longtext NOT NULL,
+                            `date` datetime NOT NULL,
+                            `accountId` int(11) NOT NULL,
+                            `blogId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Indexes for dumped tables
---
+CREATE TABLE `education` (
+                             `educationId` int(11) NOT NULL,
+                             `title` text NOT NULL,
+                             `description` longtext NOT NULL,
+                             `startDate` date NOT NULL,
+                             `endDate` date DEFAULT NULL,
+                             `backgroundImage` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Indexes for table `accounts`
---
+CREATE TABLE `education_grades` (
+                                    `gradeId` int(11) NOT NULL,
+                                    `educationId` int(11) NOT NULL,
+                                    `subject` varchar(255) NOT NULL,
+                                    `grade` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `education_skills` (
+                                    `skillId` int(11) NOT NULL,
+                                    `educationId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `experience` (
+                              `experienceId` int(11) NOT NULL,
+                              `company` text NOT NULL,
+                              `job` text NOT NULL,
+                              `description` longtext NOT NULL,
+                              `startDate` date NOT NULL,
+                              `endDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `projects` (
+                            `projectId` int(11) NOT NULL,
+                            `title` text NOT NULL,
+                            `description` longtext NOT NULL,
+                            `furtherInformation` longtext,
+                            `startDate` date NOT NULL,
+                            `endDate` date DEFAULT NULL,
+                            `github` text,
+                            `backgroundImage` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `project_skills` (
+                                  `skillId` int(11) NOT NULL,
+                                  `projectId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `skills` (
+                          `skillId` int(11) NOT NULL,
+                          `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`accountId`);
+    ADD PRIMARY KEY (`accountId`);
 
---
--- Indexes for table `blog`
---
 ALTER TABLE `blog`
-  ADD PRIMARY KEY (`blogId`);
+    ADD PRIMARY KEY (`blogId`);
 
---
--- Indexes for table `comments`
---
+ALTER TABLE `certification`
+    ADD PRIMARY KEY (`certificationId`);
+
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`commentId`);
+    ADD PRIMARY KEY (`commentId`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+ALTER TABLE `education`
+    ADD PRIMARY KEY (`educationId`);
 
---
--- AUTO_INCREMENT for table `accounts`
---
+ALTER TABLE `education_grades`
+    ADD PRIMARY KEY (`gradeId`),
+    ADD KEY `educationId` (`educationId`);
+
+ALTER TABLE `education_skills`
+    ADD PRIMARY KEY (`educationId`,`skillId`),
+    ADD KEY `skillId` (`skillId`);
+
+ALTER TABLE `experience`
+    ADD PRIMARY KEY (`experienceId`);
+
+ALTER TABLE `projects`
+    ADD PRIMARY KEY (`projectId`);
+
+ALTER TABLE `project_skills`
+    ADD PRIMARY KEY (`projectId`,`skillId`),
+    ADD KEY `Skills` (`skillId`);
+
+ALTER TABLE `skills`
+    ADD PRIMARY KEY (`skillId`);
+
+
 ALTER TABLE `accounts`
-  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `blog`
---
 ALTER TABLE `blog`
-  MODIFY `blogId` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `blogId` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `comments`
---
+ALTER TABLE `certification`
+    MODIFY `certificationId` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `comments`
-  MODIFY `commentId` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `commentId` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `education`
+    MODIFY `educationId` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `education_grades`
+    MODIFY `gradeId` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `experience`
+    MODIFY `experienceId` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `projects`
+    MODIFY `projectId` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `skills`
+    MODIFY `skillId` int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `education_grades`
+    ADD CONSTRAINT `education_grades_ibfk_1` FOREIGN KEY (`educationId`) REFERENCES `education` (`educationId`) ON DELETE CASCADE;
+
+ALTER TABLE `education_skills`
+    ADD CONSTRAINT `education_skills_ibfk_1` FOREIGN KEY (`educationId`) REFERENCES `education` (`educationId`) ON UPDATE CASCADE,
+    ADD CONSTRAINT `education_skills_ibfk_2` FOREIGN KEY (`skillId`) REFERENCES `skills` (`skillId`) ON UPDATE CASCADE;
+
+ALTER TABLE `project_skills`
+    ADD CONSTRAINT `Project` FOREIGN KEY (`projectId`) REFERENCES `projects` (`projectId`),
+    ADD CONSTRAINT `Skills` FOREIGN KEY (`skillId`) REFERENCES `skills` (`skillId`) ON UPDATE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

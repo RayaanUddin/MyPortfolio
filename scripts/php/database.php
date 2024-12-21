@@ -1,7 +1,7 @@
 <?php
 session_start();
-$db = new mysqli('rayaanf947.mysql.db', 'rayaanf947', 'Rayaan10', 'rayaanf947');
-
+//$db = new mysqli('rayaanf947.mysql.db', 'rayaanf947', 'Rayaan10', 'rayaanf947');
+$db = new mysqli('localhost', 'root', 'root', 'portfolio');
 $permission_levels = array(
     0 => "User",
     1 => "Admin"
@@ -48,12 +48,17 @@ class User {
 // Login to account
 function login($email, $password) {
     global $db;
-    $sql = "SELECT * FROM accounts WHERE email = '".$email."' AND password = '".$password."'";
+
+    $sql = "SELECT * FROM accounts WHERE email = '".$email."'";
     $result = $db->query($sql);
 
     if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
-        return new User($row['accountId']);
+        if (password_verify($password, $row['password'])) {
+            return new User($row['accountId']);
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
@@ -65,7 +70,8 @@ function register($fname, $lname, $email, $password, $perm) {
     $sql = "SELECT * FROM accounts WHERE email = '$email'";
     $result = $db->query($sql);
     if ($result->num_rows === 0) { // If account does not exists...
-        $sql = "INSERT INTO accounts (fname, lname, email, password, permission) VALUES ('$fname', '$lname', '$email', '$password', '$perm')";
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO accounts (fname, lname, email, password, permission) VALUES ('$fname', '$lname', '$email', '$password_hash', '$perm')";
         if ($db->query($sql)) { // Should always execute unless issue on database
             return true;
         } else { // Exists for texting purposes
@@ -349,4 +355,223 @@ function deleteComment($id) {
     }
 }
 
+class Project {
+    public $id;
+    public $title;
+    public $description;
+    private $skills;
+    public $startDate;
+    public $endDate;
+    public $github;
+    public $backgroundImage;
+    public $furtherInformation;
+
+    public function __construct($id, $title, $description, $furtherInformation, $startDate, $endDate, $github, $backgroundImage) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->furtherInformation = $furtherInformation;
+        $this->startDate = DateTime::createFromFormat('Y-m-d', $startDate)->format('M Y');
+        $this->endDate = isset($endDate) ? DateTime::createFromFormat('Y-m-d', $endDate)->format('M Y') : "Current";
+        $this->github = $github;
+        $this->backgroundImage = $backgroundImage;
+    }
+
+    public function getSkills() {
+        global $db;
+        if (isset($this->skills)) {
+            return $this->skills;
+        }
+        $this->skills = array();
+        $sql = "SELECT skills.name
+                FROM projects
+                INNER JOIN project_skills ON projects.projectId = project_skills.projectId
+                INNER JOIN skills ON project_skills.skillId = skills.skillId
+                WHERE projects.projectId = '".$this->id."'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($this->skills, $row['name']);
+            }
+        }
+        return $this->skills;
+    }
+}
+
+// Gets all projects from database in start date order
+function getAllProjects() {
+    global $db;
+    $project_array = array();
+
+    $sql = "SELECT * FROM projects ORDER BY startDate ASC";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $project = new Project($row['projectId'], $row['title'], $row['description'], $row['furtherInformation'], $row['startDate'], $row['endDate'], $row['github'], $row['backgroundImage']);
+            array_push($project_array, $project);
+        }
+    }
+
+    return $project_array;
+}
+
+class Education {
+    public $id;
+    public $title;
+    public $description;
+    public $startDate;
+    public $endDate;
+    public $backgroundImage;
+    private $grades;
+    private $skills;
+
+    public function __construct($id, $title, $description, $startDate, $endDate, $backgroundImage) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->startDate = DateTime::createFromFormat('Y-m-d', $startDate)->format('M Y');
+        $this->endDate = isset($endDate) ? DateTime::createFromFormat('Y-m-d', $endDate)->format('M Y') : "Current";
+        $this->backgroundImage = $backgroundImage;
+    }
+
+    public function getGrades() {
+        global $db;
+        if (isset($this->grades)) {
+            return $this->grades;
+        }
+        $this->grades = array();
+        $sql = "SELECT grade, subject FROM education_grades WHERE educationId = '".$this->id."'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->grades[$row['subject']] = $row['grade'];
+            }
+        }
+        return $this->grades;
+    }
+
+    public function getSkills() {
+        global $db;
+        if (isset($this->skills)) {
+            return $this->skills;
+        }
+        $this->skills = array();
+        $sql = "SELECT skills.name
+                FROM education
+                INNER JOIN education_skills ON education.educationId = education_skills.educationId
+                INNER JOIN skills ON education_skills.skillId = skills.skillId
+                WHERE education.educationId = '".$this->id."'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($this->skills, $row['name']);
+            }
+        }
+        return $this->skills;
+    }
+}
+
+// Gets all education from database in start date order
+function getAllEducation() {
+    global $db;
+    $education_array = array();
+
+    $sql = "SELECT * FROM education ORDER BY startDate ASC";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $education = new Education($row['educationId'], $row['title'], $row['description'], $row['startDate'], $row['endDate'], $row['backgroundImage']);
+            array_push($education_array, $education);
+        }
+    }
+
+    return $education_array;
+}
+
+// Get all skills
+function getAllSkills() {
+    global $db;
+    $skills_array = array();
+
+    $sql = "SELECT * FROM skills";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            array_push($skills_array, $row['name']);
+        }
+    }
+
+    return $skills_array;
+}
+
+class Experience {
+    public $company;
+    public $job;
+    public $description;
+    public $startDate;
+    public $endDate;
+
+    public function __construct($company, $job, $description, $startDate, $endDate) {
+        $this->company = $company;
+        $this->job = $job;
+        $this->description = $description;
+        $this->startDate = DateTime::createFromFormat('Y-m-d', $startDate)->format('M Y');
+        $this->endDate = isset($endDate) ? DateTime::createFromFormat('Y-m-d', $endDate)->format('M Y') : "Current";
+    }
+}
+
+// Get all experience
+function getAllExperiences() {
+    global $db;
+    $experience_array = array();
+
+    $sql = "SELECT * FROM experience ORDER BY startDate ASC";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $experience = new Experience($row['company'], $row['job'], $row['description'], $row['startDate'], $row['endDate']);
+            array_push($experience_array, $experience);
+        }
+    }
+
+    return $experience_array;
+}
+
+class Certification {
+    public $title;
+    public $issuedBy;
+    public $date;
+    public $description;
+    public $link;
+
+    public function __construct($title, $issuedBy, $date, $description, $link) {
+        $this->title = $title;
+        $this->issuedBy = $issuedBy;
+        $this->date = $date;
+        $this->description = $description;
+        $this->link = $link;
+    }
+}
+
+// Get all certifications
+function getAllCertifications() {
+    global $db;
+    $certification_array = array();
+
+    $sql = "SELECT * FROM certification ORDER BY date ASC";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $certification = new Certification($row['title'], $row['issuedBy'], $row['date'], $row['description'], $row['link']);
+            array_push($certification_array, $certification);
+        }
+    }
+
+    return $certification_array;
+}
 ?>

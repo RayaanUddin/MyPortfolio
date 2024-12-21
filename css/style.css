@@ -520,28 +520,6 @@ textarea:focus, textarea:not(:placeholder-shown) {
             background-color: rgba(173, 54, 54, 0.646);
         }        
     }
-    /* Background images */
-    #education-level-6 {
-        background-image: url("../images/schools/qmul_building.jpeg");
-    }
-    #education-level-3 {
-        background-image: url("../images/schools/graveney_building.jpeg");
-    }
-    #education-level-2 {
-        background-image: url("../images/schools/graveney_building2.jpeg");
-    }
-    #project-4 {
-        background-image: url("../images/projects/web_development.jpg");
-    }
-    #project-3 {
-        background-image: url("../images/projects/java.jpg");
-    }
-    #project-2 {
-        background-image: url("../images/projects/lua.jpg");
-    }
-    #project-1 {
-        background-image: url("../images/projects/delphi.jpg");
-    }
 }
 
 /* Box list container */
@@ -803,5 +781,31 @@ textarea:focus, textarea:not(:placeholder-shown) {
         }
 
 
+    }
+}
+
+
+#skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    ul {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+        li {
+            background-color: #2827278d;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-family: "Varela Round";
+            i {
+                color: white;
+                padding-right: 0.5rem;
+            }
+        }
     }
 }
